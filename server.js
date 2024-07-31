@@ -8,11 +8,24 @@ const authRoutes = require('./routes/authRoutes');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Define allowed origins
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://mrs-wellness-becf8338153e.herokuapp.com'
+];
+
 // CORS configuration
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
+
 app.use(express.json());
 
 // Serve static files from the 'public' directory
