@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Initialize form submission handlers
 function initializeForms() {
     document.querySelectorAll('form').forEach(form => {
         form.addEventListener('submit', function(e) {
@@ -19,12 +18,11 @@ function initializeForms() {
 
 function handleFormSubmission(form) {
     const formData = new FormData(form);
-    // Replace with actual form submission logic
+    
     console.log('Form data:', Object.fromEntries(formData.entries()));
     alert('Form submitted!');
 }
 
-// Load and initialize dashboard content
 function initializeDashboard() {
     const dashboardOverview = document.getElementById('overview');
     if (dashboardOverview) {
@@ -36,7 +34,7 @@ function loadDashboardContent() {
     const appointmentsSection = document.getElementById('appointments');
     const resourcesSection = document.getElementById('resources');
 
-    // Simulate fetching data from server
+   
     const appointments = [
         { date: '2024-08-01', time: '10:00 AM', doctor: 'Dr. Smith' },
         { date: '2024-08-05', time: '02:00 PM', doctor: 'Dr. Jones' }
@@ -62,7 +60,7 @@ function loadDashboardContent() {
     });
 }
 
-// Load and initialize issue details content
+
 function initializeIssueDetails() {
     const issueDetails = document.getElementById('issue-details');
     if (issueDetails) {
@@ -74,7 +72,7 @@ function loadIssueDetails() {
     const issues = [
         { id: 'pms', title: 'Premenstrual Syndrome (PMS)', content: 'Details about PMS...' },
         { id: 'endometriosis', title: 'Endometriosis', content: 'Details about Endometriosis...' }
-        // Add more issues here
+    
     ];
 
     issues.forEach(issue => {
@@ -85,7 +83,6 @@ function loadIssueDetails() {
     });
 }
 
-// Initialize appointment booking form
 function initializeAppointmentBooking() {
     const bookAppointmentForm = document.querySelector('#book-appointment form');
     if (bookAppointmentForm) {
@@ -106,7 +103,6 @@ function bookAppointment() {
         return;
     }
 
-    // Simulate booking appointment with server
     console.log(`Appointment booked with ${doctor} on ${date} at ${time}.`);
     alert(`Appointment booked with ${doctor} on ${date} at ${time}.`);
 }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors page</title>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0; 
+
+        }
+        .doctor-header-nav {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list:hover {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.nav-item {
+  margin: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #007bff;
+  background-color: #e9ecef;
+  border-radius: 5px;
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+    <nav class="doctor-header-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="/dashboard" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a href="/patients" class="nav-link">Patient Management</a></li>
+          <li class="nav-item"><a href="/appointments" class="nav-link">Appointment Management</a></li>
+          <li class="nav-item"><a href="/consultation-history" class="nav-link">Consultation History</a></li>
+          <li class="nav-item"><a href="/communication-center" class="nav-link">Communication Center</a></li>
+          <li class="nav-item"><a href="/forum-moderation" class="nav-link">Forum Moderation</a></li>
+          <li class="nav-item"><a href="/resources" class="nav-link">Resources</a></li>
+          <li class="nav-item"><a href="/settings" class="nav-link">Settings</a></li>
+        </ul>
+      </nav>
+    </header>
+</body>
+</html> 
