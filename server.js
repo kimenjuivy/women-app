@@ -15,6 +15,7 @@ const allowedOrigins = [
 ];
 
 // CORS configuration
+
 app.use(cors({
   origin: (origin, callback) => {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
@@ -24,7 +25,9 @@ app.use(cors({
     }
   },
   credentials: true
-}));
+  }));
+
+app.use(cors())
 
 app.use(express.json());
 

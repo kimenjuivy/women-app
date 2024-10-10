@@ -3,68 +3,380 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctors page</title>
+    <title>Doctor's Dashboard</title>
     <style>
         * {
             font-family: Arial, Helvetica, sans-serif;
             box-sizing: border-box;
             margin: 0;
-            padding: 0; 
-
+            padding: 0;
         }
+
+        body {
+            background-color: #f4f6f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
         .doctor-header-nav {
-  background-color: #f8f9fa;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+            background-color: #343a40;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.nav-list {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  margin: 0;
-  padding: 0;
-}
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
 
-.nav-list:hover {
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.nav-item {
-  margin: 0;
-}
+        .nav-item {
+            margin: 0 0.5rem;
+        }
 
-.nav-link {
-  text-decoration: none;
-  color: #333;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  transition: color 0.3s ease, background-color 0.3s ease;
-}
+        .nav-link {
+            text-decoration: none;
+            color: #f8f9fa;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 5px;
+        }
 
-.nav-link:hover {
-  color: #007bff;
-  background-color: #e9ecef;
-  border-radius: 5px;
-}
+        .nav-link:hover, .nav-link:focus {
+            color: #007bff;
+            background-color: #e9ecef;
+        }
+
+        .dashboard {
+            display: flex;
+            gap: 1rem;
+            padding: 2rem;
+            flex: 1;
+            flex-wrap: wrap;
+        }
+
+        .sidebar {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            max-width: 250px;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            color: #343a40;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 1rem;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            color: #0056b3;
+        }
+
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            flex: 3;
+            width: 100%;
+        }
+
+        .overview {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .overview h2 {
+            font-size: 1.5rem;
+            color: #343a40;
+            margin-bottom: 1rem;
+        }
+
+        .overview .overview-info {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .overview-info div {
+            text-align: center;
+            margin: 0 0.5rem;
+        }
+
+        .overview-info h3 {
+            margin-bottom: 0.5rem;
+            color: #007bff;
+        }
+
+        .overview-info p {
+            color: #6c757d;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            overflow-y: auto;
+            max-height: 60vh;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            color: #343a40;
+        }
+
+        .card p {
+            color: #6c757d;
+        }
+
+        .card-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .card-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .chart {
+            height: 20vh;
+            margin-top: 1.5rem;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #f8f9fa;
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            bottom: 0;
+            z-index: 1000;
+        }
 
     </style>
 </head>
-
 <body>
     <header>
-    <nav class="doctor-header-nav">
-        <ul class="nav-list">
-          <li class="nav-item"><a href="/dashboard" class="nav-link">Dashboard</a></li>
-          <li class="nav-item"><a href="/patients" class="nav-link">Patient Management</a></li>
-          <li class="nav-item"><a href="/appointments" class="nav-link">Appointment Management</a></li>
-          <li class="nav-item"><a href="/consultation-history" class="nav-link">Consultation History</a></li>
-          <li class="nav-item"><a href="/communication-center" class="nav-link">Communication Center</a></li>
-          <li class="nav-item"><a href="/forum-moderation" class="nav-link">Forum Moderation</a></li>
-          <li class="nav-item"><a href="/resources" class="nav-link">Resources</a></li>
-          <li class="nav-item"><a href="/settings" class="nav-link">Settings</a></li>
-        </ul>
-      </nav>
+        <nav class="doctor-header-nav">
+            <div class="logo">
+                <a href="/" class="nav-link">Dashboard</a>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/patients" class="nav-link">Patient Management</a></li>
+                <li class="nav-item"><a href="/appointments" class="nav-link">Appointment Management</a></li>
+                <li class="nav-item"><a href="/consultation-history" class="nav-link">Consultation History</a></li>
+                <li class="nav-item"><a href="/communication-center" class="nav-link">Communication Center</a></li>
+                <li class="nav-item"><a href="/forum-moderation" class="nav-link">Forum Moderation</a></li>
+                <li class="nav-item"><a href="/resources" class="nav-link">Resources</a></li>
+                <li class="nav-item"><a href="/settings" class="nav-link">Settings</a></li>
+            </ul>
+        </nav>
     </header>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><ahref="/patients">Patient Records</a></li>
+                <li><a href="/appointments">Manage Appointments</a></li>
+                <li><a href="/consultation-history">Consultation History</a></li>
+                <li><a href="/communication-center">Communication Center</a></li>
+                <li><a href="/resources">Resources &amp; Research</a></li>
+                <li><a href="/forum-moderation">Forum Moderation</a></li>
+                <li><a href="/settings">Profile Settings</a></li>
+            </ul>
+        </aside>
+        <main class="content-area">
+            <section class="overview">
+                <div>
+                    <h2>Dashboard Overview</h2>
+                </div>
+                <div class="overview-info">
+                    <div>
+                        <h3>10</h3>
+                        <p>New Patients</p>
+                    </div>
+                    <div>
+                        <h3>7</h3>
+                        <p>Upcoming Appointments</p>
+                    </div>
+                    <div>
+                        <h3>4</h3>
+                        <p>Pending Consultations</p>
+                    </div>
+                    <div>
+                        <h3>12</h3>
+                        <p>Messages</p>
+                    </div>
+                </div>
+            </section>
+            <section class="content-grid">
+                <div class="card">
+                    <h3>Patient Management</h3>
+                    <p>Manage patient records, health information, and more.</p>
+                    <a href="/patients" class="card-btn">Go to Patients</a>
+                    <canvas id="patientChart" class="chart"></canvas>
+                </div>
+                <div class="card">
+                    <h3>Appointment Management</h3>
+                    <p>View and manage doctor appointments efficiently.</p>
+                    <a href="/appointments" class="card-btn">Go to Appointments</a>
+                    <canvas id="appointmentChart" class="chart"></canvas>
+                </div>
+                <div class="card">
+                    <h3>Consultation History</h3>
+                    <p>Review past consultations and treatment history.</p>
+                    <a href="/consultation-history" class="card-btn">Go to History</a>
+                </div>
+                <div class="card">
+                    <h3>Communication Center</h3>
+                    <p>Manage all communications with patients and colleagues.</p>
+                    <a href="/communication-center" class="card-btn">Go to Communication</a>
+                </div>
+                <div class="card">
+                    <h3>Resources & Research</h3>
+                    <p>Access various medical resources and research materials.</p>
+                    <a href="/resources" class="card-btn">Go to Resources</a>
+                </div>
+                <div class="card">
+                    <h3>Forum Moderation</h3>
+                    <p>Moderate discussions and manage community interactions.</p>
+                    <a href="/forum-moderation" class="card-btn">Go to Forum</a>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer>
+        &copy; 2024 Doctor's Dashboard. All rights reserved.
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const patientChartCanvas = document.getElementById('patientChart');
+            patientChartCanvas.height = 150;
+            patientChartCanvas.width = patientChartCanvas.parentElement.clientWidth;
+
+            const patientChart = new Chart(patientChartCanvas, {
+                type: 'pie',
+                data: {
+                    labels: ['New Patients', 'Ongoing Treatment', 'Discharged'],
+                    datasets: [{
+                      data: [10, 15, 5],
+                        backgroundColor: ['#007bff', '#28a745', '#ffc107'],
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+
+            // Initialize chart for appointment management
+            const appointmentChartCanvas = document.getElementById('appointmentChart');
+            appointmentChartCanvas.height = 150;
+            appointmentChartCanvas.width = appointmentChartCanvas.parentElement.clientWidth;
+
+            const appointmentChart = new Chart(appointmentChartCanvas, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                    datasets: [{
+                        label: 'Appointments',
+                        data: [2, 7, 4, 8, 5],
+                        backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                        borderColor: '#007bff',
+                        borderWidth: 2,
+                        fill: true,
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 2,
+                            },
+                            grid: {
+                                display: true,
+                                color: '#e9ecef'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: true,
+                                color: '#e9ecef'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+        });
+        
+    </script>
 </body>
-</html> 
+</html>
+
+
